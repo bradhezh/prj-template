@@ -1,20 +1,19 @@
 {
-  "name": "cli-prj",
+  "name": "node-prj",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "files": ["dist"],
-  "bin": {},
-  "description": "",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "private": true,
   "scripts": {
     "build": "rspack build",
-    "dev": "rspack dev"
+    "dev": "rspack dev",
+    "start": "node build/main.js"
+  },
+  "dependencies": {
+    "dotenv": "^17"
   },
   "devDependencies": {
     "@rspack/cli": "^1",
     "@rspack/core": "^1",
+    "@types/node": "^24",
     "@types/webpack-node-externals": "^3",
     "run-script-webpack-plugin": "^0",
     "ts-checker-rspack-plugin": "^1",

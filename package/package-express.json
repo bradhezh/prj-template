@@ -1,16 +1,12 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
+  "private": true,
   "scripts": {
     "build": "rspack build",
     "dev": "rspack dev",
     "start": "node build/main.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "dotenv": "^17",
     "express": "^4",
