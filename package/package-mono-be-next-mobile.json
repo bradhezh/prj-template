@@ -1,0 +1,15 @@
+{
+  "name": "mono-prj",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "pnpm --filter backend build",
+    "build:fe": "pnpm --filter frontend build",
+    "build:m": "pnpm --filter mobile build",
+    "dev": "pnpm --filter backend dev",
+    "dev:fe": "pnpm --filter frontend dev",
+    "dev:m": "pnpm --filter mobile dev",
+    "start": "pnpm --filter backend start"
+    "start:fe": "pnpm --filter frontend start"
+  }
+}

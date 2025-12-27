@@ -1,0 +1,12 @@
+{
+  "name": "mono-prj",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "copy-dist": "pnpm dlx rimraf backend/dist && pnpm dlx cpx \"frontend/dist/**/*\" backend/dist",
+    "build": "pnpm --filter backend build && pnpm --filter frontend build && pnpm copy-dist",
+    "dev": "pnpm --filter backend dev",
+    "dev:fe": "pnpm --filter frontend dev",
+    "start": "pnpm --filter backend start"
+  }
+}
