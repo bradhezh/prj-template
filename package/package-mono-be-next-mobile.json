@@ -9,7 +9,7 @@
     "dev": "pnpm --filter backend dev",
     "dev:fe": "pnpm --filter frontend dev",
     "dev:m": "pnpm --filter mobile dev",
-    "start": "pnpm --filter backend start"
+    "start": "pnpm --filter backend start",
     "start:fe": "pnpm --filter frontend start"
   }
 }

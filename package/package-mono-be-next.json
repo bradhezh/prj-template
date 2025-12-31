@@ -7,7 +7,7 @@
     "build:fe": "pnpm --filter frontend build",
     "dev": "pnpm --filter backend dev",
     "dev:fe": "pnpm --filter frontend dev",
-    "start": "pnpm --filter backend start"
+    "start": "pnpm --filter backend start",
     "start:fe": "pnpm --filter frontend start"
   }
 }
