@@ -1,5 +1,5 @@
 import { defineConfig } from "@rspack/cli";
-import { rspack } from "@rspack/core";
+import { rspack, ExternalItem } from "@rspack/core";
 import nodeExternals from "webpack-node-externals";
 import { TsCheckerRspackPlugin } from "ts-checker-rspack-plugin";
 import { RunScriptWebpackPlugin } from "run-script-webpack-plugin";
@@ -8,12 +8,10 @@ import path from "path";
 const dev = process.env.NODE_ENV === "development";
 
 export default defineConfig({
-  target: ["node22.21", "es2023"],
+  target: ["node22", "es2023"],
   mode: !dev ? "production" : "development",
 
-  entry: !dev
-    ? "./src/main.ts"
-    : ["@rspack/core/hot/poll?100", "./src/main.ts"],
+  entry: "./src/main.ts",
   output: {
     path: path.resolve(__dirname, "build"),
     clean: true,
@@ -25,9 +23,7 @@ export default defineConfig({
   },
 
   externals: [
-    nodeExternals({
-      allowlist: ["reflect-metadata", /@rspack\/core\/hot\/.*/],
-    }) as any,
+    nodeExternals({ allowlist: ["reflect-metadata"] }) as ExternalItem,
   ],
   externalsType: "commonjs",
 
@@ -76,10 +72,6 @@ export default defineConfig({
 
   plugins: [
     new TsCheckerRspackPlugin(),
-    dev &&
-      new RunScriptWebpackPlugin({
-        name: "main.js",
-        autoRestart: false,
-      }),
+    dev && new RunScriptWebpackPlugin({ name: "main.js" }),
   ].filter(Boolean),
 });
