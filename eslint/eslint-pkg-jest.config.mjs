@@ -4,6 +4,7 @@ import ts from "typescript-eslint";
 import globals from "globals";
 
 const rules = {
+  "no-cond-assign": ["warn", "always"],
   eqeqeq: "warn",
   "@typescript-eslint/no-explicit-any": "warn",
   "@typescript-eslint/no-unsafe-member-access": "off",
