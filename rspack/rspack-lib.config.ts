@@ -16,10 +16,7 @@ export default defineConfig({
     index: "./src/index.ts",
     ...(!dev || cli ? {} : { user: "./src/user.ts" }),
   },
-  output: {
-    library: { type: "commonjs" },
-    clean: true,
-  },
+  output: { library: { type: "commonjs" }, clean: true },
 
   resolve: {
     extensions: [".ts", "..."],
@@ -29,14 +26,7 @@ export default defineConfig({
   externals: [nodeExternals() as ExternalItem],
   externalsType: "commonjs",
 
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        use: { loader: "builtin:swc-loader" },
-      },
-    ],
-  },
+  module: { rules: [{ test: /\.ts$/, use: { loader: "builtin:swc-loader" } }] },
 
   devServer: { devMiddleware: { writeToDisk: true } },
 

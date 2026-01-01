@@ -14,10 +14,7 @@ export default defineConfig({
   entry: !dev
     ? "./src/main.ts"
     : ["@rspack/core/hot/poll?100", "./src/main.ts"],
-  output: {
-    path: path.resolve(__dirname, "build"),
-    clean: true,
-  },
+  output: { path: path.resolve(__dirname, "build"), clean: true },
 
   resolve: {
     extensions: [".ts", "..."],
@@ -40,14 +37,8 @@ export default defineConfig({
           options: {
             jsc: {
               target: "es2023",
-              parser: {
-                syntax: "typescript",
-                decorators: true,
-              },
-              transform: {
-                legacyDecorator: true,
-                decoratorMetadata: true,
-              },
+              parser: { syntax: "typescript", decorators: true },
+              transform: { legacyDecorator: true, decoratorMetadata: true },
             },
           },
         },
@@ -59,14 +50,8 @@ export default defineConfig({
     minimizer: [
       new rspack.SwcJsMinimizerRspackPlugin({
         minimizerOptions: {
-          compress: {
-            keep_classnames: true,
-            keep_fnames: true,
-          },
-          mangle: {
-            keep_classnames: true,
-            keep_fnames: true,
-          },
+          compress: { keep_classnames: true, keep_fnames: true },
+          mangle: { keep_classnames: true, keep_fnames: true },
         },
       }),
     ],
@@ -76,10 +61,6 @@ export default defineConfig({
 
   plugins: [
     new TsCheckerRspackPlugin(),
-    dev &&
-      new RunScriptWebpackPlugin({
-        name: "main.js",
-        autoRestart: false,
-      }),
+    dev && new RunScriptWebpackPlugin({ name: "main.js", autoRestart: false }),
   ].filter(Boolean),
 });

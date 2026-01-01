@@ -14,10 +14,7 @@ export default defineConfig({
   entry: !dev
     ? "./src/main.ts"
     : ["@rspack/core/hot/poll?100", "./src/main.ts"],
-  output: {
-    path: path.resolve(__dirname, "build"),
-    clean: true,
-  },
+  output: { path: path.resolve(__dirname, "build"), clean: true },
 
   resolve: {
     extensions: [".ts", "..."],
@@ -45,10 +42,6 @@ export default defineConfig({
 
   plugins: [
     new TsCheckerRspackPlugin(),
-    dev &&
-      new RunScriptWebpackPlugin({
-        name: "main.js",
-        autoRestart: false,
-      }),
+    dev && new RunScriptWebpackPlugin({ name: "main.js", autoRestart: false }),
   ].filter(Boolean),
 });

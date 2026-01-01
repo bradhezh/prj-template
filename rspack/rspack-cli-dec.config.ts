@@ -32,14 +32,8 @@ export default defineConfig({
           loader: "builtin:swc-loader",
           options: {
             jsc: {
-              parser: {
-                syntax: "typescript",
-                decorators: true,
-              },
-              transform: {
-                legacyDecorator: true,
-                decoratorMetadata: true,
-              },
+              parser: { syntax: "typescript", decorators: true },
+              transform: { legacyDecorator: true, decoratorMetadata: true },
             },
           },
         },
@@ -51,14 +45,8 @@ export default defineConfig({
     minimizer: [
       new rspack.SwcJsMinimizerRspackPlugin({
         minimizerOptions: {
-          compress: {
-            keep_classnames: true,
-            keep_fnames: true,
-          },
-          mangle: {
-            keep_classnames: true,
-            keep_fnames: true,
-          },
+          compress: { keep_classnames: true, keep_fnames: true },
+          mangle: { keep_classnames: true, keep_fnames: true },
         },
       }),
     ],

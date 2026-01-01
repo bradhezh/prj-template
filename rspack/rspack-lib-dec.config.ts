@@ -16,10 +16,7 @@ export default defineConfig({
     index: "./src/index.ts",
     ...(!dev || cli ? {} : { user: "./src/user.ts" }),
   },
-  output: {
-    library: { type: "commonjs" },
-    clean: true,
-  },
+  output: { library: { type: "commonjs" }, clean: true },
 
   resolve: {
     extensions: [".ts", "..."],
@@ -39,14 +36,8 @@ export default defineConfig({
           loader: "builtin:swc-loader",
           options: {
             jsc: {
-              parser: {
-                syntax: "typescript",
-                decorators: true,
-              },
-              transform: {
-                legacyDecorator: true,
-                decoratorMetadata: true,
-              },
+              parser: { syntax: "typescript", decorators: true },
+              transform: { legacyDecorator: true, decoratorMetadata: true },
             },
           },
         },
@@ -58,14 +49,8 @@ export default defineConfig({
     minimizer: [
       new rspack.SwcJsMinimizerRspackPlugin({
         minimizerOptions: {
-          compress: {
-            keep_classnames: true,
-            keep_fnames: true,
-          },
-          mangle: {
-            keep_classnames: true,
-            keep_fnames: true,
-          },
+          compress: { keep_classnames: true, keep_fnames: true },
+          mangle: { keep_classnames: true, keep_fnames: true },
         },
       }),
     ],

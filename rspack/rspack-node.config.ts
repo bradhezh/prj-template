@@ -12,10 +12,7 @@ export default defineConfig({
   mode: !dev ? "production" : "development",
 
   entry: "./src/main.ts",
-  output: {
-    path: path.resolve(__dirname, "build"),
-    clean: true,
-  },
+  output: { path: path.resolve(__dirname, "build"), clean: true },
 
   resolve: {
     extensions: [".ts", "..."],
