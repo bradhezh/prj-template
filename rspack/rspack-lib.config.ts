@@ -13,14 +13,14 @@ export default defineConfig({
   mode: !dev ? "production" : "development",
 
   entry: {
-    index: "./src/index.ts",
-    ...(!dev || cli ? {} : { user: "./src/user.ts" }),
+    index: path.join(__dirname, "src", "index.ts"),
+    ...(!dev || cli ? {} : { user: path.join(__dirname, "src", "user.ts") }),
   },
   output: { library: { type: "commonjs" }, clean: true },
 
   resolve: {
     extensions: [".ts", "..."],
-    tsConfig: path.resolve(__dirname, "tsconfig.json"),
+    tsConfig: path.join(__dirname, "tsconfig.json"),
   },
 
   externals: [nodeExternals() as ExternalItem],

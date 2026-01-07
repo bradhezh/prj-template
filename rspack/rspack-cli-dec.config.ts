@@ -11,12 +11,12 @@ export default defineConfig({
   target: "node",
   mode: !dev ? "production" : "development",
 
-  entry: { index: "./src/index.ts" },
+  entry: { index: path.join(__dirname, "src", "index.ts") },
   output: { clean: true },
 
   resolve: {
     extensions: [".ts", "..."],
-    tsConfig: path.resolve(__dirname, "tsconfig.json"),
+    tsConfig: path.join(__dirname, "tsconfig.json"),
   },
 
   externals: [

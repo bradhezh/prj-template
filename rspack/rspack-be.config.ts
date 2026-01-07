@@ -12,13 +12,13 @@ export default defineConfig({
   mode: !dev ? "production" : "development",
 
   entry: !dev
-    ? "./src/main.ts"
-    : ["@rspack/core/hot/poll?100", "./src/main.ts"],
-  output: { path: path.resolve(__dirname, "build"), clean: true },
+    ? path.join(__dirname, "src", "main.ts")
+    : ["@rspack/core/hot/poll?100", path.join(__dirname, "src", "main.ts")],
+  output: { path: path.join(__dirname, "build"), clean: true },
 
   resolve: {
     extensions: [".ts", "..."],
-    tsConfig: path.resolve(__dirname, "tsconfig.json"),
+    tsConfig: path.join(__dirname, "tsconfig.json"),
   },
 
   externals: [

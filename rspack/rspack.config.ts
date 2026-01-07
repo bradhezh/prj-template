@@ -11,12 +11,12 @@ export default defineConfig({
   target: ["node22", "es2023"],
   mode: !dev ? "production" : "development",
 
-  entry: "./src/main.ts",
-  output: { path: path.resolve(__dirname, "build"), clean: true },
+  entry: path.join(__dirname, "src", "main.ts"),
+  output: { path: path.join(__dirname, "build"), clean: true },
 
   resolve: {
     extensions: [".ts", "..."],
-    tsConfig: path.resolve(__dirname, "tsconfig.json"),
+    tsConfig: path.join(__dirname, "tsconfig.json"),
   },
 
   externals: [nodeExternals() as ExternalItem],
