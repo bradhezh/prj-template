@@ -1,0 +1,17 @@
+{
+  "name": "cli-prj",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "bin": {},
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {},
+  "devDependencies": {
+    "@types/node": "^24"
+  }
+}
