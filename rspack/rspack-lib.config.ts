@@ -3,7 +3,7 @@ import { ExternalItem } from "@rspack/core";
 import nodeExternals from "webpack-node-externals";
 import { TsCheckerRspackPlugin } from "ts-checker-rspack-plugin";
 import { RunScriptWebpackPlugin } from "run-script-webpack-plugin";
-import path from "path";
+import path from "node:path";
 
 const dev = process.env.NODE_ENV === "development";
 const cli = process.env.CLI === "true";
