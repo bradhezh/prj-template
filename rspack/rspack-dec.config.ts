@@ -3,7 +3,7 @@ import { rspack, ExternalItem } from "@rspack/core";
 import nodeExternals from "webpack-node-externals";
 import { TsCheckerRspackPlugin } from "ts-checker-rspack-plugin";
 import { RunScriptWebpackPlugin } from "run-script-webpack-plugin";
-import path from "node:path";
+import { join } from "node:path";
 
 const dev = process.env.NODE_ENV === "development";
 
@@ -11,12 +11,12 @@ export default defineConfig({
   target: ["node22", "es2023"],
   mode: !dev ? "production" : "development",
 
-  entry: path.join(__dirname, "src", "main.ts"),
-  output: { path: path.join(__dirname, "build"), clean: true },
+  entry: join(__dirname, "src", "main.ts"),
+  output: { path: join(__dirname, "build"), clean: true },
 
   resolve: {
     extensions: [".ts", "..."],
-    tsConfig: path.join(__dirname, "tsconfig.json"),
+    tsConfig: join(__dirname, "tsconfig.json"),
   },
 
   externals: [

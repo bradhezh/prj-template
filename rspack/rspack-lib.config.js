@@ -1,7 +1,7 @@
 const { defineConfig } = require("@rspack/cli");
 const nodeExternals = require("webpack-node-externals");
 const { RunScriptWebpackPlugin } = require("run-script-webpack-plugin");
-const path = require("node:path");
+const { join } = require("node:path");
 
 const dev = process.env.NODE_ENV === "development";
 const cli = process.env.CLI === "true";
@@ -11,8 +11,8 @@ module.exports = defineConfig({
   mode: !dev ? "production" : "development",
 
   entry: {
-    index: path.join(__dirname, "src", "index.js"),
-    ...(!dev || cli ? {} : { user: path.join(__dirname, "src", "user.js") }),
+    index: join(__dirname, "src", "index.js"),
+    ...(!dev || cli ? {} : { user: join(__dirname, "src", "user.js") }),
   },
   output: { library: { type: "commonjs" }, clean: true },
 
