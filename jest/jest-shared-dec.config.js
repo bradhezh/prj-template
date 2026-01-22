@@ -6,7 +6,6 @@ module.exports = {
       {
         module: { type: "commonjs" },
         jsc: {
-          target: "es2023",
           parser: { syntax: "typescript", decorators: true },
           transform: { legacyDecorator: true, decoratorMetadata: true },
         },
