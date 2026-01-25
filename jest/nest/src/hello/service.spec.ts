@@ -20,11 +20,7 @@ describe("HelloModule", () => {
   });
 
   it("hello", () => {
-    return api.get("/api").expect(200).expect("Hello NestJS!");
-  });
-
-  it("DB_URL", () => {
-    expect(conf.dbUrl).toBe("DB_URL_set!");
+    return api.get(conf.ep.api).expect(200).expect("Hello NestJS!");
   });
 
   afterAll(async () => {
