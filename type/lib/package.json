@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {},
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^24"
   }
