@@ -13,6 +13,7 @@ const conf = {
   ep: { api: "/api" },
   env: process.env.NODE_ENV!,
   port: Number(process.env.PORT) || 3001,
+  dbUrl: process.env.DB_URL!,
   dist: "dist",
 } as const;
 
