@@ -43,7 +43,7 @@ jobs:
           curl -X PATCH https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }} \
           -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
           -H "Content-Type: application/json" \
-          -d '{"imagePath": "docker.io/${{ secrets.DOCKER_USERNAME }}/${{ vars.NAME }}:latest"}'
+          -d '{"image": {"ownerId": "${{ vars.RENDER_OWNER_ID }}", "imagePath": "docker.io/${{ secrets.DOCKER_USERNAME }}/${{ vars.NAME }}:latest"}}'
       - name: Trigger Deployment on Render
         if: ${{ github.event_name == 'push' }}
         run: |
