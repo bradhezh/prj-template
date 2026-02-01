@@ -32,7 +32,7 @@ jobs:
         run: |
           IMAGE=$(curl -s -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }} | jq -r '.imagePath')
           echo "Current image on Render is: $IMAGE"
-          if [[ "$CURRENT_IMAGE" == *"alpine"* ]]; then
+          if [[ "$IMAGE" == *"alpine"* ]]; then
             echo "needs_patch=true" >> $GITHUB_OUTPUT
           else
             echo "needs_patch=false" >> $GITHUB_OUTPUT
