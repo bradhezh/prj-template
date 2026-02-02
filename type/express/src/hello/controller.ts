@@ -1,6 +1,5 @@
 import express from "express";
 
-import conf from "@/conf";
 import { hello } from "./service";
 
 export const helloRouter = express.Router();
