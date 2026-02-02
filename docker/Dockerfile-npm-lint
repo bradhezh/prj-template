@@ -6,7 +6,7 @@ COPY . .
 
 RUN npm ci
 RUN npm build
-#RUN npm lint
+RUN npm lint
 #RUN DB_URL=$DB_URL_TEST npm test
 
 FROM node:22

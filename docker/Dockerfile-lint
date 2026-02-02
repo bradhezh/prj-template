@@ -7,7 +7,7 @@ COPY . .
 RUN corepack enable && corepack prepare pnpm@10 --activate
 RUN pnpm i --frozen-lockfile
 RUN pnpm build
-#RUN pnpm lint
+RUN pnpm lint
 #RUN DB_URL=$DB_URL_TEST pnpm test
 
 FROM node:22
