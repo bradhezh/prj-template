@@ -1,4 +1,4 @@
-name: Render
+name: Render with Docker
 
 on:
   push:
@@ -7,8 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  full:
-    name: Docker on Render
+  build-push-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,7 +30,6 @@ jobs:
         id: check_image
         run: |
           IMAGE=$(curl -s -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }} | jq -r '.imagePath')
-          echo "Current image on Render is: $IMAGE"
           if [[ "$IMAGE" == *"alpine"* ]]; then
             echo "needs_patch=true" >> $GITHUB_OUTPUT
           else
