@@ -5,7 +5,7 @@ import { hello } from "./service";
 export const helloRouter = express.Router();
 
 helloRouter.get("/", (_req, res) => {
-  res.json(hello());
+  res.send(hello());
 });
 
 export default helloRouter;

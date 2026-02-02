@@ -1,7 +1,7 @@
 import supertest from "supertest";
 
 import conf from "./conf";
-import app from "./app";
+import { app } from "./app";
 
 describe("app", () => {
   let api;

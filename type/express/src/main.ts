@@ -7,7 +7,7 @@ import { app } from "@/app";
 import conf from "@/conf";
 import { message } from "@/message";
 
-async function bootstrap() {
+function bootstrap() {
   console.log(conf.env);
 
   const server = createServer(app);
