@@ -7,12 +7,9 @@
     "lint": "exit 0"
   },
   "dependencies": {
-    "@nestjs/common": "^11",
-    "@nestjs/core": "^11",
-    "@nestjs/platform-express": "^11",
     "dotenv": "^17",
-    "reflect-metadata": "^0",
-    "rxjs": "^7"
+    "express": "^4",
+    "express-async-errors": "^3"
   },
   "devDependencies": {
     "@types/express": "^4",

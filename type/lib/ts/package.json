@@ -1,0 +1,22 @@
+{
+  "name": "lib-prj",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "bin": {},
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "test": "exit 0",
+    "lint": "exit 0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^24"
+  }
+}
