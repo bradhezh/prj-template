@@ -28,6 +28,8 @@ jobs:
         run: pnpm --filter ${{ vars.FRONTEND_NAME }} build
       - name: Test Frontend
         run: pnpm --filter ${{ vars.FRONTEND_NAME }} test
+      - name: Test Mobile
+        run: pnpm --filter ${{ vars.FRONTEND_NAME }} test
 
       - name: Generate Image Name
         if: github.event_name == 'push'

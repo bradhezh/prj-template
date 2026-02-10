@@ -24,6 +24,8 @@ jobs:
           --build-arg DB_URL_TEST=${{ secrets.DB_URL }} \
           --build-arg BACKEND=${{ vars.BACKEND_NAME }} \
           -t ${{ vars.NAME }}:test-tag .
+      - name: Test Mobile
+        run: pnpm --filter ${{ vars.MOBILE_NAME }} test
 
       - name: Generate Image Name
         if: github.event_name == 'push'
