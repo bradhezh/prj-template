@@ -29,5 +29,4 @@ jobs:
         if: github.event_name == 'push'
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: cd ${{ vars.MOBILE_NAME}} && \
-          npm eas build --platform android --profile preview --non-interactive --no-wait
+        run: npm eas build --platform android --profile preview --non-interactive --no-wait

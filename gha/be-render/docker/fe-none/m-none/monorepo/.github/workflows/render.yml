@@ -1,4 +1,4 @@
-name: Backend on Render with Docker and Frontend on Vercel
+name: Backend on Render with Docker
 
 on:
   push:
@@ -23,10 +23,6 @@ jobs:
           --build-arg DB_URL_TEST=${{ secrets.DB_URL }} \
           --build-arg BACKEND=${{ vars.BACKEND_DIR }} \
           -t ${{ vars.NAME }}:test-tag .
-      - name: Build Frontend
-        run: pnpm --filter ${{ vars.FRONTEND_DIR }} build
-      - name: Test Frontend
-        run: pnpm --filter ${{ vars.FRONTEND_DIR }} test
 
       - name: Generate Image Name
         if: github.event_name == 'push'
@@ -78,7 +74,3 @@ jobs:
         run: |
           curl -X POST https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys \
           -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}"
-
-      - name: Trigger Deployment on Vercel
-        if: github.event_name == 'push'
-        run: pnpm vercel ${{ vars.FRONTEND_DIR }} --token=${{ secrets.VERCEL_TOKEN }} --prod --yes

@@ -1,4 +1,4 @@
-name: Frontend on Render with Docker
+name: Backend on Render with Docker
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Build Image with Testing
         run: docker build \
-          --build-arg FRONTEND=${{ vars.FRONTEND_NAME }} \
+          --build-arg DB_URL_TEST=${{ secrets.DB_URL }} \
           -t ${{ vars.NAME }}:test-tag .
 
       - name: Generate Image Name

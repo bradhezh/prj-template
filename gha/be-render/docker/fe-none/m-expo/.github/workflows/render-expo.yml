@@ -21,10 +21,10 @@ jobs:
       - name: Build Image with Testing
         run: docker build \
           --build-arg DB_URL_TEST=${{ secrets.DB_URL }} \
-          --build-arg BACKEND=${{ vars.BACKEND_NAME }} \
+          --build-arg BACKEND=${{ vars.BACKEND_DIR }} \
           -t ${{ vars.NAME }}:test-tag .
       - name: Test Mobile
-        run: pnpm --filter ${{ vars.MOBILE_NAME }} test
+        run: pnpm --filter ${{ vars.MOBILE_DIR }} test
 
       - name: Generate Image Name
         if: github.event_name == 'push'
@@ -81,5 +81,5 @@ jobs:
         if: github.event_name == 'push'
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: cd ${{ vars.MOBILE_NAME}} && \
+        run: cd ${{ vars.MOBILE_DIR }} && \
           pnpm eas build --platform android --profile preview --non-interactive --no-wait

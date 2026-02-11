@@ -1,4 +1,4 @@
-name: Frontend on Vercel
+name: Mobile on Expo
 
 on:
   push:
@@ -29,6 +29,9 @@ jobs:
       - name: Test
         run: pnpm test
 
-      - name: Trigger Deployment on Vercel
+      - name: Build Preview on Expo
         if: github.event_name == 'push'
-        run: pnpm vercel --token=${{ secrets.VERCEL_TOKEN }} --prod --yes
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: cd ${{ vars.MOBILE_DIR }} && \
+          pnpm eas build --platform android --profile preview --non-interactive --no-wait
