@@ -1,0 +1,33 @@
+name: Mobile on Expo
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build-lint-test-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Dependencies
+        run: npm ci
+      - name: Build
+        run: npm build
+      - name: Lint
+        run: npm lint
+      - name: Test
+        run: npm test
+
+      - name: Build Preview on Expo
+        if: github.event_name == 'push'
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: cd ${{ vars.MOBILE_NAME}} && \
+          npm eas build --platform android --profile preview --non-interactive --no-wait

@@ -6,13 +6,12 @@ on:
   pull_request:
     branches: [master]
 
-permissions:
-  contents: read
-  packages: write
-
 jobs:
   build-push-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     env:
       REGISTRY: ${{ secrets.DOCKER_REGISTRY || 'ghcr.io' }}
       USERNAME: ${{ secrets.DOCKER_USERNAME || github.actor }}
