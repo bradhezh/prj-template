@@ -51,7 +51,7 @@ jobs:
           IMAGE=$(curl -s -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
             "https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}" | \
             jq -r '.imagePath // ""')
-          if [[ "$IMAGE" == *"alpine"* ]] || [[ -z "$IMAGE" ]]; then
+          if [[ "$IMAGE" != "${{ env.IMAGE }}"* ]]; then
             echo "needs_patch=true" >> $GITHUB_OUTPUT
           else
             echo "needs_patch=false" >> $GITHUB_OUTPUT
