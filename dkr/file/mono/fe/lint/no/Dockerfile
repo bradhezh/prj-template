@@ -1,4 +1,4 @@
-FROM node:22 AS build-stage
+FROM node:22-alpine AS build-stage
 ARG FRONTEND
 
 WORKDIR /usr/app
@@ -10,18 +10,11 @@ RUN pnpm build
 RUN pnpm lint
 #RUN pnpm test
 
-FROM node:22
+FROM nginx:stable-alpine AS production-stage
 ARG FRONTEND
 
-WORKDIR /usr/app
-COPY --from=build-stage /usr/app/package.json .
-COPY --from=build-stage /usr/app/pnpm-lock.yaml .
-COPY --from=build-stage /usr/app/pnpm-workspace.yaml .
-COPY --from=build-stage /usr/app/$FRONTEND/package.json ./$FRONTEND/
-COPY --from=build-stage /usr/app/$FRONTEND/build ./$FRONTEND/build
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build-stage /usr/app/$FRONTEND/dist /usr/share/nginx/html
 
-RUN corepack enable && corepack prepare pnpm@10 --activate
-RUN pnpm --filter $FRONTEND i --frozen-lockfile --prod
-
-USER node
-CMD ["pnpm", "start"]
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

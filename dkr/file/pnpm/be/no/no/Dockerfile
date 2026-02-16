@@ -1,4 +1,4 @@
-FROM node:22 AS build-stage
+FROM node:22-alpine AS build-stage
 #ARG DB_URL_TEST
 
 WORKDIR /usr/app
@@ -10,12 +10,12 @@ RUN pnpm build
 #RUN pnpm lint
 #RUN DB_URL=$DB_URL_TEST pnpm test
 
-FROM node:22
+FROM node:22-alpine AS production-stage
 
 WORKDIR /usr/app
-COPY --from=build-stage /usr/app/package.json .
-COPY --from=build-stage /usr/app/pnpm-lock.yaml .
-COPY --from=build-stage /usr/app/pnpm-workspace.yam[l] .
+COPY package.json .
+COPY pnpm-lock.yaml .
+COPY pnpm-workspace.yam[l] .
 COPY --from=build-stage /usr/app/build ./build
 
 RUN corepack enable && corepack prepare pnpm@10 --activate

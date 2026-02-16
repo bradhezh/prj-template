@@ -1,4 +1,4 @@
-FROM node:22 AS build-stage
+FROM node:22-alpine AS build-stage
 ARG DB_URL_TEST
 
 WORKDIR /usr/app
@@ -9,11 +9,11 @@ RUN npm build
 RUN npm lint
 RUN DB_URL=$DB_URL_TEST npm test
 
-FROM node:22
+FROM node:22-alpine AS production-stage
 
 WORKDIR /usr/app
-COPY --from=build-stage /usr/app/package.json .
-COPY --from=build-stage /usr/app/package-lock.yaml .
+COPY package.json .
+COPY package-lock.yaml .
 COPY --from=build-stage /usr/app/build ./build
 
 RUN npm ci --omit=dev
