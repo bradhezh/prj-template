@@ -9,6 +9,12 @@ async function bootstrap() {
   console.log(conf.env);
 
   const app = await NestFactory.create(AppModule);
+  app
+    .getHttpAdapter()
+    .getInstance()
+    .get("/health-check", (_req, res) => {
+      res.send("OK");
+    });
   await app.listen(conf.port);
 
   if (module.hot) {
