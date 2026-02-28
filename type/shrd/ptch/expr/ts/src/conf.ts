@@ -9,8 +9,8 @@ const conf = {
   ...common,
   env: process.env.NODE_ENV!,
   port: Number(process.env.PORT) || 3001,
-  dbUrl: process.env.DB_URL!,
   dist: "dist",
+  dbUrl: process.env.DB_URL!,
 } as const;
 
 export default { ...conf } as const;

@@ -1,6 +1,7 @@
 declare const module: any;
 
 import { NestFactory } from "@nestjs/core";
+import { Request, Response } from "express";
 
 import conf from "@/conf";
 import { AppModule } from "@/app.module";
@@ -12,7 +13,7 @@ async function bootstrap() {
   app
     .getHttpAdapter()
     .getInstance()
-    .get("/health-check", (_req, res) => {
+    .get("/health-check", (_req: Request, res: Response) => {
       res.send("OK");
     });
   await app.listen(conf.port);

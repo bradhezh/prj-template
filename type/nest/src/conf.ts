@@ -10,9 +10,10 @@ export const env = {
 } as const;
 
 const conf = {
-  ep: { api: "/api" },
   env: process.env.NODE_ENV!,
   port: Number(process.env.PORT) || 3001,
+  dist: "dist",
+  ep: { api: "/api" },
   dbUrl: process.env.DB_URL!,
 } as const;
 
