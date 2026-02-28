@@ -20,6 +20,7 @@ COPY pnpm-lock.yaml .
 COPY pnpm-workspace.yaml .
 COPY ./$BACKEND/package.json ./$BACKEND/
 COPY --from=build-stage /usr/app/$BACKEND/build ./$BACKEND/build
+COPY --from=build-stage /usr/app/$BACKEND/dist* ./$BACKEND/dist/
 
 RUN corepack enable && corepack prepare pnpm@10 --activate
 RUN pnpm --filter $BACKEND i --frozen-lockfile --prod
