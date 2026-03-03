@@ -27,4 +27,7 @@ jobs:
 
       - name: Trigger Deployment on Vercel
         if: github.event_name == 'push'
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: npm vercel --token=${{ secrets.VERCEL_TOKEN }} --prod --yes
