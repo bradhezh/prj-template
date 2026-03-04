@@ -33,4 +33,4 @@ jobs:
         if: github.event_name == 'push'
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: pnpm eas build --platform android --profile preview --non-interactive --no-wait
+        run: pnpm dlx eas-cli build --platform android --profile preview --non-interactive --no-wait

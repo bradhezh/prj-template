@@ -40,9 +40,7 @@ jobs:
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: |
-          cd ${{ vars.FRONTEND_DIR }} && \
-          pnpm vercel --token=${{ secrets.VERCEL_TOKEN }} --prod --yes
+        run: pnpm dlx vercel --token=${{ secrets.VERCEL_TOKEN }} --prod --yes
 
       - name: Build Preview on Expo
         if: github.event_name == 'push'
@@ -50,4 +48,4 @@ jobs:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: |
           cd ${{ vars.MOBILE_DIR }} && \
-          pnpm eas build --platform android --profile preview --non-interactive --no-wait
+          pnpm dlx eas-cli build --platform android --profile preview --non-interactive --no-wait

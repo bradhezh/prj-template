@@ -29,4 +29,4 @@ jobs:
         if: github.event_name == 'push'
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: npm eas build --platform android --profile preview --non-interactive --no-wait
+        run: npx eas-cli build --platform android --profile preview --non-interactive --no-wait
