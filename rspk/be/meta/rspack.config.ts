@@ -57,6 +57,8 @@ export default defineConfig({
     ],
   },
 
+  ...(!dev && { devtool: "hidden-source-map" }),
+
   devServer: { devMiddleware: { writeToDisk: true } },
 
   plugins: [

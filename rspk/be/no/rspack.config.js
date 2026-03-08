@@ -17,6 +17,8 @@ module.exports = defineConfig({
   externals: [nodeExternals({ allowlist: [/@rspack\/core\/hot\/.*/] })],
   externalsType: "commonjs",
 
+  ...(!dev && { devtool: "hidden-source-map" }),
+
   devServer: { devMiddleware: { writeToDisk: true } },
 
   plugins: [

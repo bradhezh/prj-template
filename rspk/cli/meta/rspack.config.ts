@@ -52,10 +52,17 @@ export default defineConfig({
     ],
   },
 
+  ...(!dev && { devtool: "nosources-source-map" }),
+
   devServer: { devMiddleware: { writeToDisk: true } },
 
   plugins: [
     new TsCheckerRspackPlugin(),
+    new rspack.BannerPlugin({
+      banner: "#!/usr/bin/env node",
+      raw: true,
+      entryOnly: true,
+    }),
     dev && new RunScriptWebpackPlugin({ name: "index.js" }),
   ].filter(Boolean),
 });

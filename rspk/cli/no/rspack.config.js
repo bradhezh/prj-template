@@ -1,4 +1,5 @@
 const { defineConfig } = require("@rspack/cli");
+const { rspack } = require("@rspack/core");
 const nodeExternals = require("webpack-node-externals");
 const { RunScriptWebpackPlugin } = require("run-script-webpack-plugin");
 const { join } = require("node:path");
@@ -15,9 +16,16 @@ module.exports = defineConfig({
   externals: [nodeExternals()],
   externalsType: "commonjs",
 
+  ...(!dev && { devtool: "nosources-source-map" }),
+
   devServer: { devMiddleware: { writeToDisk: true } },
 
-  plugins: [dev && new RunScriptWebpackPlugin({ name: "index.js" })].filter(
-    Boolean,
-  ),
+  plugins: [
+    new rspack.BannerPlugin({
+      banner: "#!/usr/bin/env node",
+      raw: true,
+      entryOnly: true,
+    }),
+    dev && new RunScriptWebpackPlugin({ name: "index.js" }),
+  ].filter(Boolean),
 });

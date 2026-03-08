@@ -15,6 +15,8 @@ module.exports = defineConfig({
   externals: [nodeExternals()],
   externalsType: "commonjs",
 
+  ...(!dev && { devtool: "hidden-source-map" }),
+
   devServer: { devMiddleware: { writeToDisk: true } },
 
   plugins: [dev && new RunScriptWebpackPlugin({ name: "main.js" })].filter(
